@@ -143,7 +143,19 @@
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); }
   }), { threshold: 0.16, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.rv, .people figure').forEach(el => io.observe(el));
+  document.querySelectorAll('.rv, .people figure, .clip').forEach(el => io.observe(el));
+
+  /* parallax on wide images */
+  const plx = [...document.querySelectorAll('[data-parallax]')];
+  const parallax = () => {
+    if (reduce) return;
+    plx.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > innerHeight + 100) return;
+      const p = (r.top + r.height / 2 - innerHeight / 2) / (innerHeight / 2 + r.height / 2);
+      el.querySelector('.pl').style.setProperty('--py', (p * -r.height * 0.08).toFixed(1) + 'px');
+    });
+  };
 
   /* one open model at a time */
   document.querySelectorAll('[data-accordion]').forEach(group => {
@@ -198,7 +210,7 @@
     });
   }
 
-  const tick = () => { header(); divStory && divStory(); jorStory && jorStory(); procStory && procStory(); };
+  const tick = () => { header(); divStory && divStory(); jorStory && jorStory(); procStory && procStory(); parallax(); };
   let ticking = false;
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { tick(); ticking = false; }); } }, { passive: true });
   addEventListener('resize', tick);
