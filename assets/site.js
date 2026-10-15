@@ -210,6 +210,30 @@
     });
   }
 
+  // números que contam ao aparecer
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    const cio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; cio.unobserve(e.target);
+      const el = e.target, end = parseFloat(el.dataset.count);
+      if (reduce || !end) { el.textContent = el.dataset.count; return; }
+      const t0 = performance.now(), dur = 1400;
+      const step = t => { const k = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - k, 3))); el.textContent = v; if (k < 1) requestAnimationFrame(step); };
+      el.textContent = '0'; requestAnimationFrame(step);
+    }), { threshold: .6 });
+    counters.forEach(c => cio.observe(c));
+  }
+
+  // vídeo do YouTube só carrega no clique (privacidade e desempenho)
+  document.querySelectorAll('.video[data-yt]').forEach(b => b.addEventListener('click', () => {
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0';
+    f.title = 'Depoimento de cliente da NexVita';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+    b.replaceChildren(f); b.removeAttribute('aria-label'); b.style.cursor = 'default';
+    if (window.gtag) window.gtag('event', 'video_play', { video: b.dataset.yt });
+  }));
+
   const tick = () => { header(); divStory && divStory(); jorStory && jorStory(); procStory && procStory(); parallax(); };
   let ticking = false;
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { tick(); ticking = false; }); } }, { passive: true });
