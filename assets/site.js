@@ -210,6 +210,18 @@
     });
   }
 
+  // medição: clique no WhatsApp (só registra se o visitante aceitou cookies)
+  document.addEventListener('click', ev => {
+    const a = ev.target.closest && ev.target.closest('a[href*="wa.me"]');
+    if (!a || !window.gtag) return;
+    const sec = a.closest('section[id], section[class]');
+    window.gtag('event', 'contato_whatsapp', {
+      local: sec ? (sec.id || sec.className.split(' ')[0]) : 'rodape',
+      oferta: /30 dias/.test(a.innerText) ? 'piloto_30d' : 'geral',
+      pagina: location.pathname
+    });
+  }, true);
+
   // números que contam ao aparecer
   const counters = document.querySelectorAll('[data-count]');
   if (counters.length) {
