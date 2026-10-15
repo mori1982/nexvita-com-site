@@ -234,6 +234,10 @@
     if (window.gtag) window.gtag('event', 'video_play', { video: b.dataset.yt });
   }));
 
+  // contato: pré-seleciona o assunto vindo de ?assunto=piloto
+  const sel = document.querySelector('#f-assunto');
+  if (sel && new URLSearchParams(location.search).get('assunto') === 'piloto') sel.value = 'Teste de 30 dias sem custo';
+
   const tick = () => { header(); divStory && divStory(); jorStory && jorStory(); procStory && procStory(); parallax(); };
   let ticking = false;
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { tick(); ticking = false; }); } }, { passive: true });
