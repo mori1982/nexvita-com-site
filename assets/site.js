@@ -203,6 +203,7 @@
         status.className = 'status ok';
         status.textContent = 'Mensagem enviada. Respondemos em até um dia útil.';
         if (window.gtag) window.gtag('event', 'generate_lead', { form: 'contato' });
+        if (window.nvLead) window.nvLead();
       } catch (err) {
         status.className = 'status err';
         status.textContent = 'Não foi possível enviar agora. Fale com a gente pelo WhatsApp ou escreva para contato@nexvita.com.';
