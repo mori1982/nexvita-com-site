@@ -1,0 +1,68 @@
+/* NexVita — overrides de marca/conversão (nov/2026) */
+@font-face{font-family:"Inter";src:url(fonts/Inter-latin.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--sans:"Inter",system-ui,-apple-system,sans-serif;--fs-12:12px;--fs-14:14px;--fs-16:16px;--fs-18:18px;--fs-22:22px;--fs-28:28px;--fs-36:36px;--fs-48:48px;--fs-64:64px;--cinza:#565656}
+body{font-size:var(--fs-16);font-family:var(--sans)}
+h1,h2,h3{font-family:var(--serif)}
+.btn,.hcard,.who,.lede,p,li,label,input,select{font-family:var(--sans)}
+.hero h1,.hero.with-img h1{font-size:clamp(var(--fs-36),5vw,var(--fs-64));max-width:none}
+.phero h1{font-size:clamp(var(--fs-36),4.6vw,var(--fs-64))}
+h2{font-size:clamp(var(--fs-28),3.4vw,var(--fs-48))}
+.items li,.faq summary{font-family:var(--sans);font-size:var(--fs-18)}
+.num,.n,.stat,.big-num,[class*="num"]{font-family:var(--sans)!important;font-variant-numeric:tabular-nums lining-nums}
+.eyebrow{display:block;font-family:var(--sans);font-size:var(--fs-14);letter-spacing:.14em;text-transform:uppercase;color:var(--petroleo-2);font-weight:600;margin-bottom:18px}
+.dark .eyebrow,.on-dark .eyebrow{color:var(--agua)}
+/* contraste */
+form.lead input,form.lead select,form.lead textarea{border-color:#767676}
+.wa-green,.btn.wa-btn{background:#0B6B3A!important;color:#fff!important;border-color:#0B6B3A!important}
+/* hero: card não cobre o H1 */
+.hcard.c1{right:48px;top:16%}
+.hero.with-img .wrap{padding-right:calc(38vw + 24px)}
+@media (max-width:1000px){.hero.with-img .wrap{padding-right:var(--pad)}}
+/* bloco 'Fica com a NexVita' visível mesmo sem animação */
+.col.nexvita .items li{opacity:1!important;transform:none!important}
+.col.nexvita .ctas{opacity:1!important;transform:none!important}
+/* prova ao lado do CTA */
+.proof{font-size:var(--fs-14);color:var(--cinza);margin-top:12px;max-width:52ch}
+.on-dark .proof,.dark .proof{color:var(--agua-2)}
+.proof b{font-variant-numeric:tabular-nums;color:inherit}
+/* seções novas */
+.nv{padding:96px 0}
+.nv.alt{background:var(--nevoa)}
+.nv h2{margin-bottom:24px}
+.nv .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px}
+.nv .grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px}
+.nv h3{font-size:var(--fs-22);margin-bottom:8px}
+.nv p{color:var(--cinza)}
+form.curto{display:grid;gap:14px;max-width:460px}
+form.curto label{font-size:var(--fs-14);font-weight:600}
+form.curto input,form.curto select{width:100%;font:inherit;font-size:16px;border:1px solid #767676;border-radius:2px;padding:12px;min-height:48px;background:#fff}
+.ig{display:inline-flex;gap:8px;align-items:center}
+.ig svg{width:18px;height:18px}
+/* barra fixa mobile: CTA primário + WhatsApp secundário */
+.mbar{display:none}
+@media (max-width:760px){
+ .wa-float{display:none!important}
+ .mbar{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--papel);border-top:1px solid var(--linha)}
+ .mbar .btn{flex:1;min-height:48px;font-size:15px}
+ .mbar .btn.ghost{flex:0 0 auto}
+ body{padding-bottom:72px}
+ .nv .grid3,.nv .grid2{grid-template-columns:1fr}
+}
+.shot .rv,.shot .ln>span,.shot .hero .under,.shot .hcard,.shot [class*=" d"]{opacity:1!important;transform:none!important;animation:none!important}.shot .hero{min-height:900px}.shot .cookie,.shot [class*="consent"]{display:none!important}
+/* v2 polimento — Steve */
+.top,.top.scrolled{position:sticky;top:0;background:rgba(250,250,250,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linha)}
+.top .logo .l-dark{display:block!important}.top .logo .l-light{display:none!important}
+.top .menu a{color:var(--tinta)!important}.top .menu .btn{color:var(--petroleo)!important;border-color:var(--petroleo)!important}
+.top .burger i{background:var(--tinta)!important}
+.nav .logo img{height:24px}
+.hero,.hero.with-img{padding-top:72px}
+.phero{padding-top:104px}
+.hcard .ex{color:var(--petroleo);border-color:var(--petroleo-2)}
+.dep.dep-destaque{border-left-width:3px;padding:8px 0 8px 32px}
+.dep.dep-destaque p{font-size:clamp(24px,2.6vw,36px);line-height:1.3}
+.dep.dep-destaque footer strong{font-size:18px}
+@media (max-width:1000px){.hero.with-img{padding-top:40px}.nav{height:64px}}
+@media (max-width:760px){.hero .under .ctas{display:none}}
+.hcard b{font-family:var(--serif);font-size:24px;line-height:1.1;margin-bottom:2px;color:var(--petroleo)}
+.phero h1{line-height:1.08}.hcard{max-width:330px}
+main .nv h1{line-height:1.08}

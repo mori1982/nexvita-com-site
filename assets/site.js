@@ -1,3 +1,4 @@
+if(/shot/.test(location.search))document.documentElement.classList.add("shot");
 /* NexVita — site institucional */
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -218,7 +219,7 @@
     const sec = a.closest('section[id], section[class]');
     window.gtag('event', 'contato_whatsapp', {
       local: sec ? (sec.id || sec.className.split(' ')[0]) : 'rodape',
-      oferta: /30 dias/.test(a.innerText) ? 'piloto_30d' : 'geral',
+      oferta: 'geral',
       pagina: location.pathname
     });
   }, true);
@@ -247,9 +248,6 @@
     if (window.gtag) window.gtag('event', 'video_play', { video: b.dataset.yt });
   }));
 
-  // contato: pré-seleciona o assunto vindo de ?assunto=piloto
-  const sel = document.querySelector('#f-assunto');
-  if (sel && new URLSearchParams(location.search).get('assunto') === 'piloto') sel.value = 'Teste de 30 dias sem custo';
 
   const tick = () => { header(); divStory && divStory(); jorStory && jorStory(); procStory && procStory(); parallax(); };
   let ticking = false;
@@ -257,3 +255,7 @@
   addEventListener('resize', tick);
   tick();
 })();
+
+/* cliques — WhatsApp (contato_whatsapp) e CTA principal do diagnóstico (cta_diagnostico + placement) no dataLayer e gtag (IDs inalterados) */
+document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href*="wa.me"],a[data-cta]');if(!a)return;window.dataLayer=window.dataLayer||[];var isWa=/wa\.me/.test(a.href);var isDiag=a.dataset.cta==='cta_diagnostico';var name=isWa?'contato_whatsapp':(isDiag?'cta_diagnostico':'cta_click');var pl=a.dataset.placement||(a.closest('section[id]')||{}).id||'outro';window.dataLayer.push({event:name,placement:pl,cta:a.dataset.cta||a.textContent.trim().slice(0,40),page:location.pathname});if(!isWa&&window.gtag)window.gtag('event',name,{placement:pl,page:location.pathname});if(window.fbq){if(isWa)fbq("track","Contact",{placement:pl});else if(isDiag)fbq("trackCustom","cta_diagnostico",{placement:pl});}},true);
+document.addEventListener('submit',async function(ev){var f=ev.target;if(!f.matches('form.curto'))return;ev.preventDefault();var st=f.querySelector('.status'),b=f.querySelector('button[type=submit]');st.className='status';st.textContent='';if(f.website&&f.website.value)return;if(!f.checkValidity()){f.reportValidity();return;}var d=Object.fromEntries(new FormData(f).entries());delete d.website;var at={};try{for(var i=0;i<sessionStorage.length;i++){var k=sessionStorage.key(i);if(k.indexOf('nv_')===0)at[k.slice(3)]=sessionStorage.getItem(k);}}catch(e){}var pl=Object.assign({_subject:'Site NexVita | Quero que me chamem | '+(d.nome||''),_template:'table',_captcha:'false',formulario:'curto_home',pagina:location.pathname},d,at);b.disabled=true;b.textContent='Enviando';try{var r=await fetch(f.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(pl)});var j=await r.json().catch(function(){return{}});if(!r.ok||String(j.success)!=='true')throw new Error('falha');f.reset();st.className='status ok';st.textContent='Recebemos! Vamos te chamar no WhatsApp em até um dia útil.';window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',form:'curto'});if(window.gtag)window.gtag('event','generate_lead',{form:'curto'});if(window.nvLead)window.nvLead();}catch(e){st.className='status err';st.textContent='Não foi possível enviar agora. Fale com a gente pelo WhatsApp.';}finally{b.disabled=false;b.textContent='Quero que me chamem';}},true);
