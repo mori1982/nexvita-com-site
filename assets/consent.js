@@ -6,7 +6,7 @@
   /* Mídia paga: preencher para ativar. Vazio = não carrega nada. */
   var NV_AW_ID="AW-18074257274";          /* ex.: "AW-123456789" (Google Ads, conversão "Lead formulário site") */
   var NV_AW_LABEL="jZSiCK-4rrEdEPqOvapD";       /* ex.: "AbCdEfGhIjk" (rótulo da conversão) */
-  var NV_META_PIXEL_ID="";  /* ex.: "123456789012345" (Pixel do Meta) */
+  var NV_META_PIXEL_ID="1092369830292295";  /* ex.: "123456789012345" (Pixel do Meta) */
   function get(){try{return localStorage.getItem(KEY)}catch(e){return null}}
   function set(v){try{localStorage.setItem(KEY,v)}catch(e){}}
 
