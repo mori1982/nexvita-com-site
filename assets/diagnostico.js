@@ -72,8 +72,8 @@
       .catch(function (err) {
         var m = err && err.message;
         if (m === 'dados') msg('err', 'Algum campo não foi aceito. Confira os dados e tente de novo, ou fale com a gente pelo WhatsApp.');
-        else if (m === 'limite') msg('err', 'Recebemos muitos envios agora. Fale com a gente pelo WhatsApp (11) 96820-8000.');
-        else msg('err', 'Não foi possível enviar agora. Fale com a gente pelo WhatsApp (11) 96820-8000 ou escreva para contato@nexvita.com.');
+        else if (m === 'limite') msg('err', 'Recebemos muitos envios agora. Fale com a gente pelo WhatsApp (11) 93624-4354.');
+        else msg('err', 'Não foi possível enviar agora. Fale com a gente pelo WhatsApp (11) 93624-4354 ou escreva para contato@nexvita.com.');
       })
       .then(function () { btn.disabled = false; btn.textContent = 'Quero o diagnóstico'; });
   });
