@@ -157,6 +157,7 @@ details.m .body .more{margin-top:24px}
 
 /* people */
 .people{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.people>figure:only-child{grid-column:1/-1;width:100%;max-width:400px}
 .people .ph{overflow:hidden;background:var(--nevoa)}
 .people img{aspect-ratio:3/4;object-fit:cover;object-position:50% 12%;width:100%;height:auto;filter:grayscale(1) contrast(1.03);transform:scale(1.12);transition:filter .7s,transform 1.5s var(--ease)}
 .people figure.seen img{transform:scale(1)}
@@ -437,7 +438,6 @@ details.m .body .mimg{aspect-ratio:16/9;margin:28px 0 4px}
 }
 @media (max-width:520px){.logos ul{grid-template-columns:repeat(2,1fr)}}
 
-.people figure:nth-child(2) img{object-position:50% 0}
 
 /* ---- Selos, cartões do hero, piloto e demo (15/10) ---- */
 .selos{list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:6px;font-size:14px;color:var(--cinza)}
